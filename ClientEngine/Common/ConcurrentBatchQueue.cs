@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace SuperSocket.ClientEngine
+namespace WebSocket4Net.ClientEngine
 {
     /// <summary>
     /// Concurrent BatchQueue

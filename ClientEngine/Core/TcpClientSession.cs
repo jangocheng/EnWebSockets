@@ -5,7 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
-namespace SuperSocket.ClientEngine
+namespace WebSocket4Net.ClientEngine
 {
     public abstract class TcpClientSession : ClientSession
     {

@@ -3,7 +3,7 @@ using System.Text;
 using System.Net;
 using System.Net.Sockets;
 
-namespace SuperSocket.ClientEngine
+namespace WebSocket4Net.ClientEngine
 {
     public interface IProxyConnector
     {

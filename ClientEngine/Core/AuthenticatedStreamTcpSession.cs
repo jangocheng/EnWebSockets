@@ -13,7 +13,7 @@ using System.Security.Authentication;
 #endif
 using System.Security.Cryptography.X509Certificates;
 
-namespace SuperSocket.ClientEngine
+namespace WebSocket4Net.ClientEngine
 {
     public abstract class AuthenticatedStreamTcpSession : TcpClientSession
     {

@@ -5,7 +5,7 @@ using System.Net.Sockets;
 using System.Reflection;
 using System.Net;
 
-namespace SuperSocket.ClientEngine
+namespace WebSocket4Net.ClientEngine
 {
     public delegate void ConnectedCallback(Socket socket, object state, SocketAsyncEventArgs e, Exception exception);
 

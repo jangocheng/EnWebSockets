@@ -2,7 +2,7 @@
 using System.Text;
 using System.Net.Sockets;
 
-namespace SuperSocket.ClientEngine
+namespace WebSocket4Net.ClientEngine
 {
     public class ProxyEventArgs : EventArgs
     {

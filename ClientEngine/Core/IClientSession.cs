@@ -5,7 +5,7 @@ using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
 
-namespace SuperSocket.ClientEngine
+namespace WebSocket4Net.ClientEngine
 {
     public interface IClientSession
     {
