@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WebSocket4Net.ClientEngine
+namespace EnWebSockets.ClientEngine
 {
     public class SearchMarkState<T>
         where T : IEquatable<T>

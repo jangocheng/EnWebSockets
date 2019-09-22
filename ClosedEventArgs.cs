@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WebSocket4Net
+namespace EnWebSockets
 {
     /// <summary>
     /// The event args for closed event

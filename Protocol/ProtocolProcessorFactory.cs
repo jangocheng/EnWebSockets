@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
-namespace WebSocket4Net.Protocol
+namespace EnWebSockets.Protocol
 {
     class ProtocolProcessorFactory
     {

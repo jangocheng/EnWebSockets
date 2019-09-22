@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WebSocket4Net.Protocol.FramePartReader
+namespace EnWebSockets.Protocol.FramePartReader
 {
     class FixPartReader : DataFramePartReader
     {

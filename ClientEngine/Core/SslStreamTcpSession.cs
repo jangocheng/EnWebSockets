@@ -7,7 +7,7 @@ using System.Net.Security;
 using System.Threading;
 using System.Security.Cryptography.X509Certificates;
 
-namespace WebSocket4Net.ClientEngine
+namespace EnWebSockets.ClientEngine
 {
     public class SslStreamTcpSession : AuthenticatedStreamTcpSession
     {

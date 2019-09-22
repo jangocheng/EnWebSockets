@@ -14,7 +14,7 @@ using Windows.Security.Cryptography.Core;
 #endif
 
 
-namespace WebSocket4Net
+namespace EnWebSockets
 {
     public static partial class Extensions
     {

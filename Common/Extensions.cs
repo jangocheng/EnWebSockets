@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Collections.Specialized;
-using WebSocket4Net.ClientEngine;
+using EnWebSockets.ClientEngine;
 
-namespace WebSocket4Net.Common
+namespace EnWebSockets.Common
 {
     public static class Extensions
     {

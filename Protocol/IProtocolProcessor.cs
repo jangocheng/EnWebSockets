@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-namespace WebSocket4Net.Protocol
+namespace EnWebSockets.Protocol
 {
     public interface IProtocolProcessor
     {

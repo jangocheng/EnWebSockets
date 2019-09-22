@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-using WebSocket4Net.Common;
+using EnWebSockets.Common;
 
-namespace WebSocket4Net.Command
+namespace EnWebSockets.Command
 {
     public abstract class WebSocketCommandBase : ICommand<WebSocket, WebSocketCommandInfo>
     {

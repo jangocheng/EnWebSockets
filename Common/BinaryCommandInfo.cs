@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WebSocket4Net.Common
+namespace EnWebSockets.Common
 {
     public class BinaryCommandInfo : CommandInfo<byte[]>
     {

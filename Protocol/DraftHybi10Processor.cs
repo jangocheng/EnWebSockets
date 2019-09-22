@@ -9,7 +9,7 @@ using System.Text;
 
 
 
-namespace WebSocket4Net.Protocol
+namespace EnWebSockets.Protocol
 {
     /// <summary>
     /// http://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-10

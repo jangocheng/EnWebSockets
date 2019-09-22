@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using WebSocket4Net.Common;
-using WebSocket4Net.Protocol.FramePartReader;
+using EnWebSockets.Common;
+using EnWebSockets.Protocol.FramePartReader;
 
-namespace WebSocket4Net.Protocol
+namespace EnWebSockets.Protocol
 {
     class DraftHybi10DataReader : IClientCommandReader<WebSocketCommandInfo>
     {

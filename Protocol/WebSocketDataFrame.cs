@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using WebSocket4Net.Common;
+using EnWebSockets.Common;
 
-namespace WebSocket4Net.Protocol
+namespace EnWebSockets.Protocol
 {
     public class WebSocketDataFrame
     {
@@ -28,9 +28,9 @@ namespace WebSocket4Net.Protocol
 
                 switch (opCode)
                 {
-                    case WebSocket4Net.OpCode.Ping:
-                    case WebSocket4Net.OpCode.Pong:
-                    case WebSocket4Net.OpCode.Close:
+                    case EnWebSockets.OpCode.Ping:
+                    case EnWebSockets.OpCode.Pong:
+                    case EnWebSockets.OpCode.Close:
                         return true;
                 }
 

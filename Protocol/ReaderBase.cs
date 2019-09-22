@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using WebSocket4Net.Common;
+using EnWebSockets.Common;
 
-namespace WebSocket4Net.Protocol
+namespace EnWebSockets.Protocol
 {
     public abstract class ReaderBase : IClientCommandReader<WebSocketCommandInfo>
     {

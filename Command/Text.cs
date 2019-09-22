@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 
-namespace WebSocket4Net.Command
+namespace EnWebSockets.Command
 {
     public class Text : WebSocketCommandBase
     {

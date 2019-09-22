@@ -5,7 +5,7 @@ using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
 
-namespace WebSocket4Net.ClientEngine
+namespace EnWebSockets.ClientEngine
 {
     public class AsyncTcpSession : TcpClientSession
     {

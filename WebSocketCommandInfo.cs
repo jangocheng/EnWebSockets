@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using WebSocket4Net.Common;
-using WebSocket4Net.Protocol;
+using EnWebSockets.Common;
+using EnWebSockets.Protocol;
 
-namespace WebSocket4Net
+namespace EnWebSockets
 {
     public class WebSocketCommandInfo : ICommandInfo
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WebSocket4Net.Protocol
+namespace EnWebSockets.Protocol
 {
     class DraftHybi00DataReader : ReaderBase
     {

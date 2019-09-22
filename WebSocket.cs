@@ -7,11 +7,11 @@ using System.Reflection;
 using System.Security.Authentication;
 using System.Text;
 using System.Threading;
-using WebSocket4Net.ClientEngine;
-using WebSocket4Net.Common;
-using WebSocket4Net.Protocol;
+using EnWebSockets.ClientEngine;
+using EnWebSockets.Common;
+using EnWebSockets.Protocol;
 
-namespace WebSocket4Net
+namespace EnWebSockets
 {
     public partial class WebSocket : IDisposable
     {
@@ -354,7 +354,7 @@ namespace WebSocket4Net
 #if !NETFX_CORE
                 client = CreateSecureClient(uri);
 #else
-                throw new NotSupportedException("WebSocket4Net still has not supported secure websocket for UWP yet.");
+                throw new NotSupportedException("EnWebSockets still has not supported secure websocket for UWP yet.");
 #endif
             }
             else

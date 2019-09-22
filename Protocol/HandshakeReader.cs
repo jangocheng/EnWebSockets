@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using WebSocket4Net.ClientEngine;
-using WebSocket4Net.Common;
+using EnWebSockets.ClientEngine;
+using EnWebSockets.Common;
 
-namespace WebSocket4Net.Protocol
+namespace EnWebSockets.Protocol
 {
     class HandshakeReader : ReaderBase
     {
