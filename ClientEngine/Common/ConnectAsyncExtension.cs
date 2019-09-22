@@ -44,12 +44,7 @@ namespace EnWebSockets.ClientEngine
     }
 
     public static partial class ConnectAsyncExtension
-    {
-        internal static bool PreferIPv4Stack()
-        {
-            return Environment.GetEnvironmentVariable("PREFER_IPv4_STACK") != null;
-        }
-
+    { 
         public static void ConnectAsync(this EndPoint remoteEndPoint, EndPoint localEndPoint, ConnectedCallback callback, object state)
         {
             var e = CreateSocketAsyncEventArgs(remoteEndPoint, callback, state);
