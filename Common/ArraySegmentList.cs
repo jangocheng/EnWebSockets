@@ -1,10 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using SuperSocket.ClientEngine;
 
 namespace WebSocket4Net.Common
 {
+    internal static class Extensions
+    {
+        public static T[] CloneRange<T>(this T[] source, int offset, int length)
+        {
+            T[] target = new T[length];
+            Array.Copy(source, offset, target, 0, length);
+            return target;
+        }
+    }
+
     public class ArraySegmentList<T> : IList<T>
         where T : IEquatable<T>
     {
@@ -344,6 +354,8 @@ namespace WebSocket4Net.Common
             m_Count -= removedLen;
         }
 
+
+
         public void AddSegment(T[] array, int offset, int length)
         {
             AddSegment(array, offset, length, false);
@@ -438,31 +450,6 @@ namespace WebSocket4Net.Common
 
                 RemoveSegmentAt(i);
             }
-        }
-
-        public int SearchLastSegment(SearchMarkState<T> state)
-        {
-            if (m_Segments.Count <= 0)
-                return -1;
-
-            var lastSegment = m_Segments[m_Segments.Count - 1];
-
-            if (lastSegment == null)
-                return -1;
-
-            var result = lastSegment.Array.SearchMark(lastSegment.Offset, lastSegment.Count, state.Mark);
-
-            if (!result.HasValue)
-                return -1;
-
-            if (result.Value > 0)
-            {
-                state.Matched = 0;
-                return result.Value - lastSegment.Offset + lastSegment.From;
-            }
-
-            state.Matched = 0 - result.Value;
-            return -1;
         }
 
         public int CopyTo(T[] to)
