@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-#if !SILVERLIGHT
-using System.Collections.Specialized;
-#endif
+using System.Collections.Generic; 
+using System.Collections.Specialized; 
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -36,12 +34,9 @@ namespace EnWebSockets.Protocol
         }
 
         public override void SendHandshake(WebSocket websocket)
-        {
-#if !SILVERLIGHT
+        { 
             var secKey = Convert.ToBase64String(Encoding.ASCII.GetBytes(Guid.NewGuid().ToString().Substring(0, 16)));
-#else
-            var secKey = Convert.ToBase64String(ASCIIEncoding.Instance.GetBytes(Guid.NewGuid().ToString().Substring(0, 16)));
-#endif
+ 
             string expectedAccept = (secKey + m_Magic).CalculateChallenge();
 
             websocket.Items[m_ExpectedAcceptKey] = expectedAccept;
@@ -49,12 +44,9 @@ namespace EnWebSockets.Protocol
             var handshakeBuilder = new StringBuilder();
 
             if (websocket.HttpConnectProxy == null)
-            {
-#if SILVERLIGHT
-                handshakeBuilder.AppendFormatWithCrCf("GET {0} HTTP/1.1", websocket.TargetUri.GetPathAndQuery());
-#else
+            { 
                 handshakeBuilder.AppendFormatWithCrCf("GET {0} HTTP/1.1", websocket.TargetUri.PathAndQuery);
-#endif
+ 
             }
             else
             {

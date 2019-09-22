@@ -72,12 +72,9 @@ namespace EnWebSockets.ClientEngine
         }
         
         private static SslProtocols GetDefaultProtocol()
-        {
-#if NETSTANDARD
+        { 
             return SslProtocols.Tls11 | SslProtocols.Tls12;
-#else
-            return SslProtocols.Default;
-#endif
+ 
         }
     }
 }

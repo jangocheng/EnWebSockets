@@ -4,14 +4,7 @@ using System.Text;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-
-
-#if !NETFX_CORE
 using System.Security.Cryptography;
-#else
-using Windows.Security.Cryptography;
-using Windows.Security.Cryptography.Core;
-#endif
 
 
 namespace EnWebSockets
@@ -109,13 +102,7 @@ namespace EnWebSockets
 
             return true;
         }
-
-        public static TValue GetValue<TValue>(this IDictionary<string, object> valueContainer, string name)
-        {
-            var defaultValue = default(TValue);
-            return GetValue(valueContainer, name, defaultValue);
-        }
-
+ 
         public static TValue GetValue<TValue>(this IDictionary<string, object> valueContainer, string name, TValue defaultValue)
         {
             object value;
@@ -137,62 +124,28 @@ namespace EnWebSockets
 
 
         internal static bool IsSimpleType(this Type type)
-        {
-#if NETFX_CORE || NETCORE
-            var typeInfo = type.GetTypeInfo();
-
-            return
-                typeInfo.IsValueType ||
-                typeInfo.IsPrimitive ||
-                m_SimpleTypes.Contains(type) ||
-                Convert.GetTypeCode(type) != TypeCode.Object;
-
-#else
+        { 
             return
                 type.IsValueType ||
                 type.IsPrimitive ||
                 m_SimpleTypes.Contains(type) ||
                 Convert.GetTypeCode(type) != TypeCode.Object;
-#endif
         }
 
         public static string GetOrigin(this Uri uri)
         {
-#if NETFX_CORE || NETCORE
-            return uri.GetComponents(UriComponents.SchemeAndServer, UriFormat.Unescaped);
-#else
             return uri.GetLeftPart(UriPartial.Authority);
-#endif
         }
 
         public static byte[] ComputeMD5Hash(this byte[] source)
         {
-#if NETFX_CORE
-            var algProv = HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Md5);
-            var hash = algProv.CreateHash();
-            hash.Append(CryptographicBuffer.CreateFromByteArray(source));
-            byte[] result;
-            CryptographicBuffer.CopyToByteArray(hash.GetValueAndReset(), out result);
-            return result;
-#else
             return MD5.Create().ComputeHash(source);
-#endif
-
         }
 
         public static string CalculateChallenge(this string source)
-        {
-#if NETFX_CORE
-            var algProv = HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Sha1);
-            var hash = algProv.CreateHash();
-            hash.Append(CryptographicBuffer.ConvertStringToBinary(source, BinaryStringEncoding.Utf8));
-            return CryptographicBuffer.EncodeToBase64String(hash.GetValueAndReset());
-
-#elif !SILVERLIGHT
+        { 
             return Convert.ToBase64String(SHA1.Create().ComputeHash(Encoding.ASCII.GetBytes(source)));
-#else
-            return Convert.ToBase64String(SHA1.Create().ComputeHash(ASCIIEncoding.Instance.GetBytes(source)));
-#endif
+ 
 
         }
     }

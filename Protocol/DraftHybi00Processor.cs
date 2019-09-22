@@ -143,12 +143,9 @@ namespace EnWebSockets.Protocol
 
             if (websocket.HttpConnectProxy == null)
             {
-
-#if SILVERLIGHT
-                handshakeBuilder.AppendFormatWithCrCf("GET {0} HTTP/1.1", websocket.TargetUri.GetPathAndQuery());
-#else
+ 
                 handshakeBuilder.AppendFormatWithCrCf("GET {0} HTTP/1.1", websocket.TargetUri.PathAndQuery);
-#endif
+ 
             }
             else
             {

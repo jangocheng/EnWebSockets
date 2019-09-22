@@ -73,17 +73,7 @@ namespace EnWebSockets.ClientEngine
 
             return false;
         }
-
-#if SILVERLIGHT && !WINDOWS_PHONE
-        private SocketClientAccessPolicyProtocol m_ClientAccessPolicyProtocol = SocketClientAccessPolicyProtocol.Http;
-
-        public SocketClientAccessPolicyProtocol ClientAccessPolicyProtocol
-        {
-            get { return m_ClientAccessPolicyProtocol; }
-            set { m_ClientAccessPolicyProtocol = value; }
-        }
-#endif
-
+ 
         protected abstract void SocketEventArgsCompleted(object sender, SocketAsyncEventArgs e);
 
         public override void Connect(EndPoint remoteEndPoint)

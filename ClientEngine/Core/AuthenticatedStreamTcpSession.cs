@@ -4,13 +4,9 @@ using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using System.Net.Security;
-using System.Threading;
-#if NETSTANDARD
-using System.Threading.Tasks;
-#endif
-#if !SILVERLIGHT
-using System.Security.Authentication;
-#endif
+using System.Threading; 
+using System.Threading.Tasks; 
+using System.Security.Authentication; 
 using System.Security.Cryptography.X509Certificates;
 
 namespace EnWebSockets.ClientEngine
@@ -35,12 +31,9 @@ namespace EnWebSockets.ClientEngine
 
         }
 
-
-#if !SILVERLIGHT
-
+ 
         public SecurityOption Security { get; set; }
-
-#endif
+ 
 
         protected override void SocketEventArgsCompleted(object sender, SocketAsyncEventArgs e)
         {
@@ -82,61 +75,13 @@ namespace EnWebSockets.ClientEngine
 
             BeginRead();
         }
-        
-#if !NETSTANDARD
-
-        private void OnDataRead(IAsyncResult result)
-        {
-            var state = result.AsyncState as StreamAsyncState;
-
-            if (state == null || state.Stream == null)
-            {
-                OnError(new NullReferenceException("Null state or stream."));
-                return;
-            }
-
-            var stream = state.Stream;
-
-            int length = 0;
-
-            try
-            {
-                length = stream.EndRead(result);
-            }
-            catch (Exception e)
-            {
-                if (!IsIgnorableException(e))
-                    OnError(e);
-
-                if (EnsureSocketClosed(state.Client))
-                    OnClosed();
-
-                return;
-            }
-
-            if (length == 0)
-            {
-                if (EnsureSocketClosed(state.Client))
-                    OnClosed();
-
-                return;
-            }
-
-            OnDataReceived(Buffer.Array, Buffer.Offset, length);
-            BeginRead();
-        }
-#endif
+         
 
         void BeginRead()
-        {
-#if NETSTANDARD
-            ReadAsync();
-#else
-            StartRead();
-#endif
+        { 
+            ReadAsync(); 
         }
-        
-#if NETSTANDARD
+         
         private async void ReadAsync()
         {
             while (IsConnected)
@@ -176,32 +121,7 @@ namespace EnWebSockets.ClientEngine
                 OnDataReceived(buffer.Array, buffer.Offset, length);
             }
         }
-#else
-
-    void StartRead()
-    {
-        var client = Client;
-
-        if (client == null || m_Stream == null)
-            return;
-
-        try
-        {
-            var buffer = Buffer;
-            m_Stream.BeginRead(buffer.Array, buffer.Offset, buffer.Count, OnDataRead, new StreamAsyncState { Stream = m_Stream, Client = client });
-        }
-        catch (Exception e)
-        {
-            if (!IsIgnorableException(e))
-                OnError(e);
-
-            if (EnsureSocketClosed(client))
-                OnClosed();
-        }
-    }
-
-#endif
-        protected override bool IsIgnorableException(Exception e)
+         protected override bool IsIgnorableException(Exception e)
         {
             if (base.IsIgnorableException(e))
                 return true;
@@ -221,83 +141,7 @@ namespace EnWebSockets.ClientEngine
 
             return false;
         }
-#if !NETSTANDARD
-        protected override void SendInternal(PosList<ArraySegment<byte>> items)
-        {
-            var client = this.Client;
-
-            try
-            {
-                var item = items[items.Position];
-                m_Stream.BeginWrite(item.Array, item.Offset, item.Count,
-                    OnWriteComplete, new StreamAsyncState { Stream = m_Stream, Client = client, SendingItems = items });
-            }
-            catch (Exception e)
-            {
-                if (!IsIgnorableException(e))
-                    OnError(e);
-
-                if (EnsureSocketClosed(client))
-                    OnClosed();
-            }
-        }
-
-        private void OnWriteComplete(IAsyncResult result)
-        {
-            var state = result.AsyncState as StreamAsyncState;
-
-            if (state == null || state.Stream == null)
-            {
-                OnError(new NullReferenceException("State of Ssl stream is null."));
-                return;
-            }
-
-            var stream = state.Stream;
-
-            try
-            {
-                stream.EndWrite(result);
-            }
-            catch (Exception e)
-            {
-                if (!IsIgnorableException(e))
-                    OnError(e);
-
-                if (EnsureSocketClosed(state.Client))
-                    OnClosed();
-
-                return;
-            }
-
-            var items = state.SendingItems;
-            var nextPos = items.Position + 1;
-
-            //Has more data to send
-            if (nextPos < items.Count)
-            {
-                items.Position = nextPos;
-                SendInternal(items);
-                return;
-            }
-
-            try
-            {
-                m_Stream.Flush();
-            }
-            catch (Exception e)
-            {
-                if (!IsIgnorableException(e))
-                    OnError(e);
-
-                if (EnsureSocketClosed(state.Client))
-                    OnClosed();
-
-                return;
-            }
-
-            OnSendingCompleted();
-        }
-#else
+ 
         protected override void SendInternal(PosList<ArraySegment<byte>> items)
         {
             SendInternalAsync(items);
@@ -328,18 +172,13 @@ namespace EnWebSockets.ClientEngine
             
             OnSendingCompleted();
         }
-        
-#endif
-
+         
         public override void Close()
         {
             var stream = m_Stream;
 
             if (stream != null)
-            {
-#if !NETSTANDARD
-                stream.Close();
-#endif
+            { 
                 stream.Dispose();
                 m_Stream = null;
             }

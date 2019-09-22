@@ -148,12 +148,10 @@ namespace EnWebSockets
         internal string HandshakeHost { get; private set; }
 
         internal string Origin { get; private set; }
-
-#if !__IOS__
+ 
         public bool NoDelay { get; set; }
-#endif
-
-#if !SILVERLIGHT
+ 
+ 
         /// <summary>
         /// set/get the local bind endpoint
         /// </summary>
@@ -174,11 +172,8 @@ namespace EnWebSockets
 
                 Client.LocalEndPoint = value;
             }
-        }
-#endif
-
-#if !SILVERLIGHT
-
+        } 
+ 
         private SecurityOption m_Security;
 
         /// <summary>
@@ -198,8 +193,7 @@ namespace EnWebSockets
 
                 return m_Security = secureClient.Security;
             }
-        }
-#endif
+        } 
 
         private bool m_Disposed = false;
 
@@ -245,8 +239,7 @@ namespace EnWebSockets
             return new AsyncTcpSession();
         }
 
-
-#if !NETFX_CORE
+ 
 
         TcpClientSession CreateSecureClient(string uri)
         {
@@ -289,8 +282,7 @@ namespace EnWebSockets
                 HandshakeHost = TargetUri.Host + ":" + port;
 
             return CreateSecureTcpSession();
-        }
-#endif
+        } 
 
         private void Initialize(string uri, string subProtocol, List<KeyValuePair<string, string>> cookies, List<KeyValuePair<string, string>> customHeaderItems, string userAgent, string origin, WebSocketVersion version, EndPoint httpConnectProxy, int receiveBufferSize)
         {
@@ -350,12 +342,9 @@ namespace EnWebSockets
                 client = CreateClient(uri);
             }
             else if (uri.StartsWith(m_SecureUriPrefix, StringComparison.OrdinalIgnoreCase))
-            {
-#if !NETFX_CORE
+            { 
                 client = CreateSecureClient(uri);
-#else
-                throw new NotSupportedException("EnWebSockets still has not supported secure websocket for UWP yet.");
-#endif
+ 
             }
             else
             {
@@ -424,16 +413,8 @@ namespace EnWebSockets
 
             if (Proxy != null)
                 Client.Proxy = Proxy;
-
-#if !__IOS__
+ 
             Client.NoDelay = NoDelay;
-#endif
-
-#if SILVERLIGHT
-#if !WINDOWS_PHONE
-            Client.ClientAccessPolicyProtocol = ClientAccessPolicyProtocol;
-#endif
-#endif
             Client.Connect(m_RemoteEndPoint);
         }
 
