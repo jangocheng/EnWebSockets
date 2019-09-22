@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Security.Authentication;
 using System.Text;
-using SuperSocket.ClientEngine;
+
 
 namespace WebSocket4Net
 {
