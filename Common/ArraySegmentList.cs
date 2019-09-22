@@ -1,19 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using SuperSocket.ClientEngine;
 
 namespace WebSocket4Net.Common
 {
-    internal static class Extensions
-    {
-        public static T[] CloneRange<T>(this T[] source, int offset, int length)
-        {
-            T[] target = new T[length];
-            Array.Copy(source, offset, target, 0, length);
-            return target;
-        }
-    }
 
     public class ArraySegmentList<T> : IList<T>
         where T : IEquatable<T>
